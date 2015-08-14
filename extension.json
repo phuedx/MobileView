@@ -1,0 +1,36 @@
+{
+	"name": "MobileView",
+	"version": "0.0.0",
+	"author": [
+		"Juliusz Gonera",
+		"Ryan Kaldari",
+		"Rob Moen",
+		"Joaquín Oltra Hernández",
+		"Patrick Reilly",
+		"Arthur Richards",
+		"Jon Robson",
+		"Florian Schmidt",
+		"Max Semenik",
+		"Sam Smith",
+		"Brion Vibber"
+	],
+	"license-name": "GPLv3",
+	"type": "other",
+	"AutoloadClasses": {
+		"MobileFormatter": "includes/MobileFormatter.php",
+		"ApiMobileView": "includes/api/ApiMobileView.php",
+		"ApiParseExtender": "includes/api/ApiParseExtender.php",
+		"Wikimedia\\MobileView\\Hooks": "includes/Hooks.php"
+	},
+	"APIModules": {
+		"mobileview": "ApiMobileView"
+	},
+	"Hooks": {
+		"APIGetAllowedParams": "ApiParseExtender::onAPIGetAllowedParams",
+		"APIAfterExecute": "ApiParseExtender::onAPIAfterExecute",
+		"APIGetParamDescription": "ApiParseExtender::onAPIGetParamDescription",
+		"APIGetDescription": "ApiParseExtender::onAPIGetDescription",
+		"UnitTestsList": "Wikimedia\\MobileView\\Hooks::onUnitTestsList"
+	},
+	"manifest_version": 1
+}
