@@ -1,0 +1,11 @@
+language: php
+
+php:
+  - hhvm
+
+script:
+  - composer self-update
+  - build/travis.sh
+
+# Use Travis CI's container-based infrastructure (http://docs.travis-ci.com/user/migrating-from-legacy/).
+sudo: false
