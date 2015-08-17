@@ -62,8 +62,8 @@ class ApiParseExtender {
 	 * @return bool
 	 */
 	public static function onAPIAfterExecute( ApiBase &$module ) {
-		$mfSpecialCaseMainPage = MobileContext::singleton()
-			->getMFConfig()->get( 'MFSpecialCaseMainPage' );
+		$config = ConfigFactory::getDefaultInstance()->makeConfig( 'mobileview' );
+		$specialCaseMainPage = $config->get( 'MobileViewSpecialCaseMainPage' );
 
 		if ( $module->getModuleName() == 'parse' ) {
 			if ( defined( 'ApiResult::META_CONTENT' ) ) {

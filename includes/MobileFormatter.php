@@ -58,10 +58,11 @@ class MobileFormatter extends HtmlFormatter {
 	 * @return MobileFormatter
 	 */
 	public static function newFromContext( MobileContext $context, $html ) {
-		$mfSpecialCaseMainPage = $context->getMFConfig()->get( 'MFSpecialCaseMainPage' );
+		$config = ConfigFactory::getDefaultInstance()->makeConfig( 'mobileview' );
+		$specialCaseMainPage = $config->get( 'MobileViewSpecialCaseMainPage' );
 
 		$title = $context->getTitle();
-		$isMainPage = $title->isMainPage() && $mfSpecialCaseMainPage;
+		$isMainPage = $title->isMainPage() && $specialCaseMainPage;
 		$isFilePage = $title->inNamespace( NS_FILE );
 		$isSpecialPage = $title->isSpecialPage();
 

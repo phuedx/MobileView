@@ -446,7 +446,8 @@ class ApiMobileView extends ApiBase {
 		$useTidy = $this->getConfig()->get( 'UseTidy' );
 		$mfTidyMobileViewSections = $mfConfig->get( 'MFTidyMobileViewSections' );
 		$mfMinCachedPageSize = $mfConfig->get( 'MFMinCachedPageSize' );
-		$mfSpecialCaseMainPage = $mfConfig->get( 'MFSpecialCaseMainPage' );
+		$config = ConfigFactory::getDefaultInstance()->makeConfig( 'mobileview' );
+		$specialCaseMainPage = $config->get( 'MobileViewSpecialCaseMainPage' );
 
 		global $wgMemc;
 
@@ -509,7 +510,7 @@ class ApiMobileView extends ApiBase {
 			$mf = new MobileFormatter( MobileFormatter::wrapHTML( $html ), $title );
 			$mf->setRemoveMedia( $noImages );
 			$mf->filterContent();
-			$mf->setIsMainPage( $this->mainPage && $mfSpecialCaseMainPage );
+			$mf->setIsMainPage( $this->mainPage && $specialCaseMainPage );
 			$html = $mf->getText();
 		}
 

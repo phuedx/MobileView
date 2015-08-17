@@ -32,5 +32,11 @@
 		"APIGetDescription": "ApiParseExtender::onAPIGetDescription",
 		"UnitTestsList": "Wikimedia\\MobileView\\Hooks::onUnitTestsList"
 	},
+	"config": {
+		"MobileViewSpecialCaseMainPage": true
+	},
+	"ConfigRegistry": {
+		"mobileview": "GlobalVarConfig::newInstance"
+	},
 	"manifest_version": 1
 }
