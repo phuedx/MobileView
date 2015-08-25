@@ -10,7 +10,7 @@ class ApiParseExtenderTest extends MediaWikiTestCase {
 	public function testApi( array $params, $expected ) {
 		global $wgUseTidy;
 
-		$this->setMwGlobals( 'wgMFRemovableClasses',
+		$this->setMwGlobals( 'wgMobileViewRemovableClasses',
 			array(
 				'base' => array(),
 				'HTML' => array( '.nomobile' )

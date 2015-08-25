@@ -33,7 +33,11 @@
 		"UnitTestsList": "Wikimedia\\MobileView\\Hooks::onUnitTestsList"
 	},
 	"config": {
-		"MobileViewSpecialCaseMainPage": true
+		"MobileViewSpecialCaseMainPage": true,
+		"MobileViewRemovableClasses": {
+			"base": [],
+			"HTML": []
+		}
 	},
 	"ConfigRegistry": {
 		"mobileview": "GlobalVarConfig::newInstance"

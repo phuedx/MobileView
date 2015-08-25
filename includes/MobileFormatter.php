@@ -97,16 +97,17 @@ class MobileFormatter extends HtmlFormatter {
 
 	/**
 	 * Removes content inappropriate for mobile devices
-	 * @param bool $removeDefaults Whether default settings at $wgMFRemovableClasses should be used
+	 * @param bool $removeDefaults Whether default settings at $wgMobileViewRemovableClasses should be
+	 *  used
 	 * @return array
 	 */
 	public function filterContent( $removeDefaults = true ) {
-		$mfRemovableClasses = MobileContext::singleton()->getMFConfig()
-			->get( 'MFRemovableClasses' );
+		$config = ConfigFactory::getDefaultInstance()->makeConfig( 'mobileview' );
+		$removableClasses = $config->get( 'MobileViewRemovableClasses' );
 
 		if ( $removeDefaults ) {
-			$this->remove( $mfRemovableClasses['base'] );
-			$this->remove( $mfRemovableClasses['HTML'] ); // @todo: Migrate this variable
+			$this->remove( $removableClasses['base'] );
+			$this->remove( $removableClasses['HTML'] ); // @todo: Migrate this variable
 		}
 
 		if ( $this->removeMedia ) {
