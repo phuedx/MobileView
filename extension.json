@@ -37,7 +37,8 @@
 		"MobileViewRemovableClasses": {
 			"base": [],
 			"HTML": []
-		}
+		},
+		"MobileViewTidyMobileViewSections": true
 	},
 	"ConfigRegistry": {
 		"mobileview": "GlobalVarConfig::newInstance"

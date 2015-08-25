@@ -443,11 +443,11 @@ class ApiMobileView extends ApiBase {
 	 */
 	private function getData( Title $title, $noImages ) {
 		$mfConfig = MobileContext::singleton()->getMFConfig();
-		$useTidy = $this->getConfig()->get( 'UseTidy' );
-		$mfTidyMobileViewSections = $mfConfig->get( 'MFTidyMobileViewSections' );
 		$mfMinCachedPageSize = $mfConfig->get( 'MFMinCachedPageSize' );
 		$config = ConfigFactory::getDefaultInstance()->makeConfig( 'mobileview' );
 		$specialCaseMainPage = $config->get( 'MobileViewSpecialCaseMainPage' );
+		$useTidy = $this->getConfig()->get( 'UseTidy' );
+		$tidyMobileViewSections = $config->get( 'MobileViewTidyMobileViewSections' );
 
 		global $wgMemc;
 
@@ -542,7 +542,7 @@ class ApiMobileView extends ApiBase {
 				if ( count( $data['text'] ) ) {
 					$chunk = "<h$chunk";
 				}
-				if ( $useTidy && $mfTidyMobileViewSections && count( $chunks ) > 1 ) {
+				if ( $useTidy && $tidyMobileViewSections && count( $chunks ) > 1 ) {
 					$chunk = MWTidy::tidy( $chunk );
 				}
 				if ( preg_match( '/<ol\b[^>]*?class="references"/', $chunk ) ) {
