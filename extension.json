@@ -38,7 +38,8 @@
 			"base": [],
 			"HTML": []
 		},
-		"MobileViewTidyMobileViewSections": true
+		"MobileViewTidyMobileViewSections": true,
+		"MobileViewMinCachedPageSize": 65536
 	},
 	"ConfigRegistry": {
 		"mobileview": "GlobalVarConfig::newInstance"

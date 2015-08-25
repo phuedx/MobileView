@@ -442,12 +442,11 @@ class ApiMobileView extends ApiBase {
 	 * @return array
 	 */
 	private function getData( Title $title, $noImages ) {
-		$mfConfig = MobileContext::singleton()->getMFConfig();
-		$mfMinCachedPageSize = $mfConfig->get( 'MFMinCachedPageSize' );
 		$config = ConfigFactory::getDefaultInstance()->makeConfig( 'mobileview' );
 		$specialCaseMainPage = $config->get( 'MobileViewSpecialCaseMainPage' );
 		$useTidy = $this->getConfig()->get( 'UseTidy' );
 		$tidyMobileViewSections = $config->get( 'MobileViewTidyMobileViewSections' );
+		$minCachedPageSize = $config->get( 'MobileViewMinCachedPageSize' );
 
 		global $wgMemc;
 
@@ -592,7 +591,7 @@ class ApiMobileView extends ApiBase {
 		}
 
 		// Don't store small pages to decrease cache size requirements
-		if ( strlen( $html ) >= $mfMinCachedPageSize ) {
+		if ( strlen( $html ) >= $minCachedPageSize ) {
 			// store for the same time as original parser output
 			$wgMemc->set( $key, $data, $cacheExpiry );
 		}
