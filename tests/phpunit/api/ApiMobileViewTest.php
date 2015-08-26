@@ -46,6 +46,10 @@ class MockApiMobileView extends ApiMobileView {
 	protected function getPageImage( Title $title ) {
 		return $this->findFile( $title );
 	}
+
+	protected function isMainPage( Title $title ) {
+		return false;
+	}
 }
 
 class MockWikiPage extends WikiPage {
