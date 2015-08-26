@@ -27,7 +27,7 @@ composer install
 # FIXME: Should MobileView be built against a specific version of
 # MobileFrontend?
 cd extensions
-git clone https://github.com/wikimedia/mediawiki-extensions-MobileFrontend MobileFrontend
+git clone --branch=removeMobileApi https://github.com/phuedx/mediawiki-extensions-MobileFrontend MobileFrontend
 ln -s $TRAVIS_BUILD_DIR MobileView
 
 cd .. # cd extensions
