@@ -4,6 +4,8 @@ class MockApiMobileView extends ApiMobileView {
 	/** @var PHPUnit_Framework_MockObject_MockObject */
 	public $mockFile;
 
+	private $isMainPage = false;
+
 	protected function makeTitle( $name ) {
 		$t = Title::newFromText( $name );
 		$row = new stdClass();
@@ -48,7 +50,11 @@ class MockApiMobileView extends ApiMobileView {
 	}
 
 	protected function isMainPage( Title $title ) {
-		return false;
+		return $this->isMainPage;
+	}
+
+	public function setIsMainPage( $isMainPage ) {
+		$this->isMainPage = $isMainPage;
 	}
 }
 
@@ -158,6 +164,32 @@ class ApiMobileViewTest extends MediaWikiTestCase {
 		$this->executeMobileViewApi( $api, $expected );
 	}
 
+	public function testViewWithMainPage() {
+		$input = array(
+			'action' => 'mobileview',
+			'page' => 'Main Page',
+			'sections' => 1,
+			'noheadings' => '',
+			'text' => 'Lead
+== Section 1 ==
+Text 1
+== Section 2 ==
+Text 2
+',
+			'onlyrequestedsections' => ''
+		);
+
+		$expected = array(
+			'mainpage' => '',
+			'sections' => array(),
+		);
+
+		$api = $this->getMobileViewApi( $input );
+		$api->setIsMainPage( true );
+
+		$this->executeMobileViewApi( $api, $expected );
+	}
+
 	/**
 	 * @dataProvider provideViewWithTransforms
 	 */
@@ -251,17 +283,6 @@ Text 2
 					'sections' => array(
 						$baseOut['sections'][1],
 					),
-				),
-			),
-			array(
-				array(
-					'page' => 'Main Page',
-					'sections' => 1,
-					'onlyrequestedsections' => ''
-				) + $baseIn,
-				array(
-					'mainpage' => '',
-					'sections' => array(),
 				),
 			),
 			array(
