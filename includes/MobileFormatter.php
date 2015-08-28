@@ -50,35 +50,6 @@ class MobileFormatter extends HtmlFormatter {
 	}
 
 	/**
-	 * Creates and returns a MobileFormatter
-	 *
-	 * @param MobileContext $context
-	 * @param string $html
-	 *
-	 * @return MobileFormatter
-	 */
-	public static function newFromContext( MobileContext $context, $html ) {
-		$config = ConfigFactory::getDefaultInstance()->makeConfig( 'mobileview' );
-		$specialCaseMainPage = $config->get( 'MobileViewSpecialCaseMainPage' );
-
-		$title = $context->getTitle();
-		$isMainPage = $title->isMainPage() && $specialCaseMainPage;
-		$isFilePage = $title->inNamespace( NS_FILE );
-		$isSpecialPage = $title->isSpecialPage();
-
-		$html = self::wrapHTML( $html );
-		$formatter = new MobileFormatter( $html, $title );
-		$formatter->enableExpandableSections( !$isMainPage && !$isSpecialPage );
-
-		$formatter->setIsMainPage( $isMainPage );
-		if ( $context->getContentTransformations() && !$isFilePage ) {
-			$formatter->setRemoveMedia( $context->imagesDisabled() );
-		}
-
-		return $formatter;
-	}
-
-	/**
 	 * Set support of page for expandable sections to $flag (standard: true)
 	 * @todo kill with fire when there will be minimum of pre-1.1 app users remaining
 	 * @param bool $flag
